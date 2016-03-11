@@ -1,6 +1,7 @@
 package helpers;
 import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
 
 public class Log {
 
@@ -17,8 +18,8 @@ public class Log {
 
 	public static void info(String message)
 	{
+		//PropertyConfigurator.configure("log4j.properties");
 		BasicConfigurator.configure();
 		Log.info(message);
 	}
-
 }

@@ -1,23 +1,38 @@
 package step_definitions;
 
 import java.net.MalformedURLException;
+import java.net.URL;
 
+
+import helpers.Log;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
-
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
+import org.openqa.selenium.Platform;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import cucumber.api.Scenario;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import static org.testng.AssertJUnit.assertEquals;
 
 public class Hooks{
     public static WebDriver driver;
+    // BROWSERSTACK
+    public static final String USERNAME = "markwinspear1";
+    public static final String AUTOMATE_KEY="pqjib5awEiTcke7fimbB";
+    public static final String URL = "http://" + USERNAME + ":" + AUTOMATE_KEY + "@hub.browserstack.com/wd/hub";
 
     String host = System.getProperty("host", "localhost");
-    String browser = System.getProperty("browser", "chrome");
+    String platform = System.getProperty("platform", "Windows");
+    String os_version = System.getProperty("os_version", "8.1");
+    String browserName = System.getProperty("browserName", "chrome");
+    String browserVersion = System.getProperty("version", "48");
+    private String sessionId;
+
     
     @Before
     /**
@@ -25,14 +40,30 @@ public class Hooks{
      * shared state between tests
      */
     public void openBrowser() throws MalformedURLException {
-    	System.out.println("Called openBrowser");
+        Log.info("Called openBrowser");
+        Log.info("Opening on " + host + " with " + browserName + " browser");
 
         if (host.equals("localhost")) {
-            if (browser.equals("chrome")) {
+            if (browserName.equals("chrome")) {
                 System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "/vendor/chromedriver.exe");
                 driver = new ChromeDriver();
             }
+            if (browserName.equals("firefox")) {
+                driver = new FirefoxDriver();
+            }
         }
+
+        else if (host.equals("browserstack")) {
+            DesiredCapabilities caps = new DesiredCapabilities();
+            caps.setCapability("browser", browserName);
+            caps.setCapability("browser_version", browserVersion);
+            caps.setCapability("os", platform);
+            caps.setCapability("os_version", os_version);
+            caps.setCapability("browserstack.debug", "true");
+            driver = new RemoteWebDriver(new URL(URL), caps);
+        }
+
+        Log.info("Deleting cookies and maximising browser window");
         driver.manage().deleteAllCookies();
     	driver.manage().window().maximize();
     }
@@ -100,7 +131,7 @@ public class Hooks{
         } catch (WebDriverException somePlatformsDontSupportScreenshots) {
             System.err.println(somePlatformsDontSupportScreenshots.getMessage());
         }
-        
+
         }
         driver.quit();
         
