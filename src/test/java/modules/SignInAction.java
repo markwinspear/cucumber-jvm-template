@@ -3,7 +3,7 @@ package modules;
 import helpers.Log;
 
 import java.util.HashMap;
-
+import static step_definitions.Hooks.*;
 import org.openqa.selenium.WebDriver;
 import org.testng.Reporter;
 
@@ -15,20 +15,24 @@ public class SignInAction {
 
 	public static void Execute(WebDriver driver,HashMap<String,String> map) throws Exception{
 		
-		AutomationHomePage.sign_in.click();
-		Log.info("Click action is perfromed on My Account link" );
+		//AutomationHomePage.sign_in.click();
+		click(AutomationHomePage.sign_in);
+		Log.info("Click action is performed on My Account link" );
 
-		LoginPage.email.sendKeys(map.get("username"));
+		//LoginPage.email.sendKeys(map.get("username"));
+		type(map.get("username"),LoginPage.email);
 
 		Log.info(" is entered in UserName text box" );
 		
-		LoginPage.password.sendKeys(map.get("password"));
+		//LoginPage.password.sendKeys(map.get("password"));
+		type(map.get("password"),LoginPage.password);
 		Log.info(" is entered in Password text box" );
 
-		LoginPage.signin_button.click();
+		//LoginPage.signin_button.click();
+		click(LoginPage.signin_button);
 		Log.info("Click action is performed on Submit button");
 
-		Reporter.log("SignIn Action is successfully perfomred");
+		Reporter.log("SignIn Action is successfully performed");
 
 	}
 }

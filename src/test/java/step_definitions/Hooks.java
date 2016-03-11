@@ -2,31 +2,27 @@ package step_definitions;
 
 import java.net.MalformedURLException;
 import java.net.URL;
-
-
 import helpers.Log;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
-import org.openqa.selenium.Platform;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import cucumber.api.Scenario;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
-
 import static org.testng.AssertJUnit.assertEquals;
 
 public class Hooks{
     public static WebDriver driver;
-    // BROWSERSTACK
-    public static final String USERNAME = "markwinspear1";
-    public static final String AUTOMATE_KEY="pqjib5awEiTcke7fimbB";
+    // BROWSERSTACK. Note that environment variables are specified in the run configuration of the IDE
+    public static final String USERNAME = System.getenv("BROWSERSTACK_USERNAME");
+    public static final String AUTOMATE_KEY= System.getenv("BROWSERSTACK_KEY");
     public static final String URL = "http://" + USERNAME + ":" + AUTOMATE_KEY + "@hub.browserstack.com/wd/hub";
 
-    String host = System.getProperty("host", "localhost");
+    String host = System.getProperty("host", "browserstack");
     String platform = System.getProperty("platform", "Windows");
     String os_version = System.getProperty("os_version", "8.1");
     String browserName = System.getProperty("browserName", "chrome");
@@ -41,7 +37,7 @@ public class Hooks{
      */
     public void openBrowser() throws MalformedURLException {
         Log.info("Called openBrowser");
-        Log.info("Opening on " + host + " with " + browserName + " browser");
+        Log.info("Opening on " + host + " with " + platform + " platform and " + browserName + " browser, version " + browserVersion );
 
         if (host.equals("localhost")) {
             if (browserName.equals("chrome")) {
@@ -87,23 +83,23 @@ public class Hooks{
         find(locator).submit();
     }
 
-    public void type(String inputText, By locator) {
+    public static void type(String inputText, By locator) {
         find(locator).sendKeys(inputText);
     }
 
-    public void clear(By locator) {
+    public static void clear(By locator) {
         find(locator).clear();
     }
 
-    public void click(By locator) {
+    public static void click(By locator) {
         find(locator).click();
     }
 
-    public String getPageTitle() {
+    public static String getPageTitle() {
         return driver.getTitle();
     }
 
-    public String getUrl() {
+    public static String getUrl() {
         return driver.getCurrentUrl();
     }
 
@@ -112,7 +108,7 @@ public class Hooks{
      * @param locator The webdriver element
      * @return String representing the inner HTML of the DOM element (MW: To check it is actually inner-text
      */
-    public String getText(By locator) {
+    public static String getText(By locator) {
         return find(locator).getText();
     }
 

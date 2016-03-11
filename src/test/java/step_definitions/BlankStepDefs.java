@@ -15,14 +15,11 @@ public class BlankStepDefs {
     
     @When("^I open seleniumframework website$")
     public void i_open_seleniumframework_website() throws Throwable {
-        //driver.get("http://www.seleniumframework.com");
         visit("http://www.seleniumframework.com");
     }
 
     @Then("^I validate title and URL$")
     public void i_print_title_and_URL() throws Throwable {
-     // assertEquals("Selenium Framework | Selenium, Cucumber, Ruby, Java et al.",driver.getTitle());
-     // assertEquals("http://www.seleniumframework.com/",driver.getCurrentUrl());
       verifyPage("Selenium Framework | Selenium, Cucumber, Ruby, Java et al.", "http://www.seleniumframework.com/");
     }
     

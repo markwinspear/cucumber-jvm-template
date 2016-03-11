@@ -14,7 +14,7 @@ public class LoginPage extends BaseClass{
 	}    
 
 	
-	@FindBy(how=How.ID, using="email")
+/*	@FindBy(how=How.ID, using="email")
 	public static WebElement email;
 	
 	@FindBy(how=How.ID, using="passwd")
@@ -28,8 +28,13 @@ public class LoginPage extends BaseClass{
 	public static WebElement email_create;
 
 	@FindBy(how=How.ID, using="SubmitCreate")
-	public static WebElement submit_create;
-	
+	public static WebElement submit_create;*/
+
+	public static By email = By.id("email");
+	public static By password = By.id("password");
+	public static By email_create = By.id("email_create");
+	public static By submit_create = By.id("submit_create");
+	public static By signin_button = By.id("SubmitLogin");
 	
 		
 	}
