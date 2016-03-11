@@ -2,6 +2,7 @@ package pageobjects;
 
 import org.openqa.selenium.WebDriver;
 
+
 public abstract class BaseClass {
 	public static WebDriver driver;
 	public static boolean bResult;
@@ -10,5 +11,4 @@ public abstract class BaseClass {
 		BaseClass.driver = driver;
 		BaseClass.bResult = true;
 	}
-
 }
