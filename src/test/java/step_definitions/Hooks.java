@@ -78,7 +78,7 @@ public class Hooks{
 
     /**
      * returns the text from the provided DOM locator using Selenium's getText method
-     * @param locator
+     * @param locator The webdriver element
      * @return String representing the inner HTML of the DOM element (MW: To check it is actually inner-text
      */
     public String getText(By locator) {
