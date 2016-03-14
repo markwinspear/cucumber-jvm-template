@@ -40,16 +40,13 @@ public class ShoppingCart{
     
     @When("^I open automationpractice website$")
     public void i_open_automationpractice_website() throws Throwable {
-        // Write code here that turns the phrase above into concrete actions
     	visit("http://automationpractice.com");
     }
 
     @When("^I sign in$")
     public void i_sign_in() throws Throwable {
-    	//PageFactory.initElements(driver, AutomationHomePage.class);
-		//PageFactory.initElements(driver, LoginPage.class);
-        AutomationHomePage home = new AutomationHomePage(driver);
-        LoginPage login = new LoginPage(driver);
+     //   AutomationHomePage home = new AutomationHomePage(driver);
+     //   LoginPage login = new LoginPage(driver);
 
 		SignInAction.Execute(driver,datamap.get(0));
     }
