@@ -17,6 +17,8 @@ import pageobjects.LoginPage;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 
+import static step_definitions.Hooks.*;
+
 
 public class ShoppingCart{
     public WebDriver driver;
@@ -39,13 +41,15 @@ public class ShoppingCart{
     @When("^I open automationpractice website$")
     public void i_open_automationpractice_website() throws Throwable {
         // Write code here that turns the phrase above into concrete actions
-    	driver.get("http://automationpractice.com");
+    	visit("http://automationpractice.com");
     }
 
     @When("^I sign in$")
     public void i_sign_in() throws Throwable {
-    	PageFactory.initElements(driver, AutomationHomePage.class);
-		PageFactory.initElements(driver, LoginPage.class);
+    	//PageFactory.initElements(driver, AutomationHomePage.class);
+		//PageFactory.initElements(driver, LoginPage.class);
+        AutomationHomePage home = new AutomationHomePage(driver);
+        LoginPage login = new LoginPage(driver);
 
 		SignInAction.Execute(driver,datamap.get(0));
     }

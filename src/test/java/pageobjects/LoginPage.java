@@ -31,12 +31,13 @@ public class LoginPage extends BaseClass{
 	public static WebElement submit_create;*/
 
 	public static By email = By.id("email");
-	public static By password = By.id("password");
+	public static By password = By.id("passwd");
 	public static By email_create = By.id("email_create");
 	public static By submit_create = By.id("submit_create");
 	public static By signin_button = By.id("SubmitLogin");
 	
-		
+
+
 	}
 		
 

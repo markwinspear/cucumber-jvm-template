@@ -18,8 +18,8 @@ public class Log {
 
 	public static void info(String message)
 	{
-		//PropertyConfigurator.configure("log4j.properties");
-		BasicConfigurator.configure();
+		PropertyConfigurator.configure("log4j.xml");
+		//BasicConfigurator.configure();
 		Log.info(message);
 	}
 }

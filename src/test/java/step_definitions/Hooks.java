@@ -2,6 +2,8 @@ package step_definitions;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+
+import com.github.mkolisnyk.cucumber.reporting.CucumberResultsOverview;
 import helpers.Log;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -22,7 +24,7 @@ public class Hooks{
     public static final String AUTOMATE_KEY= System.getenv("BROWSERSTACK_KEY");
     public static final String URL = "http://" + USERNAME + ":" + AUTOMATE_KEY + "@hub.browserstack.com/wd/hub";
 
-    String host = System.getProperty("host", "browserstack");
+    String host = System.getProperty("host", "localhost");
     String platform = System.getProperty("platform", "Windows");
     String os_version = System.getProperty("os_version", "8.1");
     String browserName = System.getProperty("browserName", "chrome");
@@ -73,13 +75,13 @@ public class Hooks{
         assertEquals(expectedUrl ,driver.getCurrentUrl());
     }
 
-    public WebElement find(By locator) {
+    public static WebElement find(By locator) {
         WebDriverWait wait = new WebDriverWait(driver, 15);
         wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
         return driver.findElement(locator);
     }
 
-    public void submit(By locator) {
+    public static void submit(By locator) {
         find(locator).submit();
     }
 
@@ -116,8 +118,11 @@ public class Hooks{
     /**
      * Embed a screenshot in test report if test is marked as failed
      */
-    public void embedScreenshot(Scenario scenario) {
-       
+    public void tearDown(Scenario scenario) {
+
+        Log.info("tearDown started");
+        System.out.println("tearDown started 2");
+
         if(scenario.isFailed()) {
         try {
         	 scenario.write("Current Page URL is " + driver.getCurrentUrl());
@@ -129,6 +134,20 @@ public class Hooks{
         }
 
         }
+        // REPORTING: http://mkolisnyk.blogspot.co.uk/2015/05/cucumber-jvm-advanced-reporting.html
+      //  Log.info("Starting to generate report");
+      //  CucumberResultsOverview results = new CucumberResultsOverview();
+      //  results.setOutputDirectory("target");
+      //  results.setOutputName("cucumber-results");
+      //  results.setSourceFile("target/cucumber.json");
+     //   try {
+      //      Log.info("Generating report");
+       //     results.executeFeaturesOverviewReport();
+      //  }
+     //   catch (Exception ex) {
+     //       System.err.println(ex.getMessage());
+     //   }
+
         driver.quit();
         
     }

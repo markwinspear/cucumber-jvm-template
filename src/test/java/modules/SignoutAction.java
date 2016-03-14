@@ -3,9 +3,10 @@ package modules;
 import helpers.Log;
 import org.openqa.selenium.WebDriver;
 import org.testng.Reporter;
-import static step_definitions.Hooks.*;
 import pageobjects.AutomationHomePage;
+import step_definitions.Hooks;
 
+import static step_definitions.Hooks.*;
 
 
 public class SignoutAction {
