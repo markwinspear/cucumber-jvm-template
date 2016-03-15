@@ -1,9 +1,10 @@
 package step_definitions;
 
 import static step_definitions.Hooks.*;
-import org.openqa.selenium.WebDriver;
-import cucumber.api.java.en.Then;
+
 import cucumber.api.java.en.When;
+import cucumber.api.java.en.Then;
+import org.openqa.selenium.WebDriver;
 
 public class BlankStepDefs {
     public WebDriver driver;
@@ -17,6 +18,7 @@ public class BlankStepDefs {
     public void i_open_seleniumframework_website() throws Throwable {
         visit("http://www.seleniumframework.com");
     }
+
 
     @Then("^I validate title and URL$")
     public void i_print_title_and_URL() throws Throwable {
