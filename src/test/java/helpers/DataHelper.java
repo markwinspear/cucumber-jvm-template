@@ -14,12 +14,9 @@ public class DataHelper {
 	
 	public static List<HashMap<String,String>> data()
 	{
-
-
 		List<HashMap<String,String>> mydata = null;
 		try
 		{
-
 			FileInputStream fs = new FileInputStream("classpath:TestData-seleniumframework.xlsx");
 			XSSFWorkbook workbook = new XSSFWorkbook(fs);
 			XSSFSheet sheet = workbook.getSheet("SignInSignOut");
@@ -54,7 +51,5 @@ public class DataHelper {
 		}
 		
 		return mydata;
-
 	}
-
 }

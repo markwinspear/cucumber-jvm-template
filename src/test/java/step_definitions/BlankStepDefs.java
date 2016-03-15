@@ -1,6 +1,9 @@
 package step_definitions;
 
+import static org.junit.Assert.assertThat;
 import static step_definitions.Hooks.*;
+import static org.hamcrest.CoreMatchers.*;
+
 
 import cucumber.api.java.en.When;
 import cucumber.api.java.en.Then;
@@ -23,6 +26,8 @@ public class BlankStepDefs {
     @Then("^I validate title and URL$")
     public void i_print_title_and_URL() throws Throwable {
       verifyPage("Selenium Framework | Selenium, Cucumber, Ruby, Java et al.", "http://www.seleniumframework.com/");
+      //OR alternatively...
+      assertThat(driver.getTitle(), is(equalTo("The Internet"));
     }
     
 }
