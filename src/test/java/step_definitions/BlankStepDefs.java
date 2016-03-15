@@ -27,7 +27,7 @@ public class BlankStepDefs {
     public void i_print_title_and_URL() throws Throwable {
       verifyPage("Selenium Framework | Selenium, Cucumber, Ruby, Java et al.", "http://www.seleniumframework.com/");
       //OR alternatively...
-      assertThat(driver.getTitle(), is(equalTo("The Internet"));
+      assertThat(driver.getTitle(), is(equalTo("Selenium Framework | Selenium, Cucumber, Ruby, Java et al.")));
     }
     
 }

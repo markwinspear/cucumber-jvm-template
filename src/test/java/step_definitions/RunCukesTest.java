@@ -9,7 +9,7 @@ import cucumber.api.CucumberOptions;
 import cucumber.api.junit.Cucumber;
 
 
-@RunWith(ExtendedCucumber.class)
+/*@RunWith(ExtendedCucumber.class)
 @ExtendedCucumberOptions(jsonReport = "target/cucumber.json",
 	retryCount = 3,
 	detailedReport = true,
@@ -17,9 +17,9 @@ import cucumber.api.junit.Cucumber;
 	overviewReport = false,
 	toPDF = false,
 	outputFolder = "target"
-	)
+	)*/
 
-//@RunWith(Cucumber.class)
+@RunWith(Cucumber.class)
 @CucumberOptions(
 		plugin = {"html:target/cucumber-html-report",
 		"junit:target/cucumber-junit.xml",
@@ -27,7 +27,7 @@ import cucumber.api.junit.Cucumber;
 		"pretty:target/cucumber-pretty.txt"
 		},
 		features = "classpath:features",
-	//	format = { "pretty", "json:target/cucumber.json"},
+		format = { "pretty", "json:target/cucumber.json"},
 	//	plugin = {"pretty", "html:target/cucumber-html-report"},
 		tags = {}
 		)
