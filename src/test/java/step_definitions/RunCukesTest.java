@@ -21,11 +21,11 @@ import cucumber.api.junit.Cucumber;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-		plugin = {"html:target/cucumber-html-report",
+	/*	plugin = {"html:target/cucumber-html-report",
 		"junit:target/cucumber-junit.xml",
 		"json:target/cucumber.json",
 		"pretty:target/cucumber-pretty.txt"
-		},
+		},*/
 		features = "classpath:features",
 		format = { "pretty", "json:target/cucumber.json"},
 	//	plugin = {"pretty", "html:target/cucumber-html-report"},
