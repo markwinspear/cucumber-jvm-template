@@ -20,10 +20,12 @@ import static org.testng.AssertJUnit.assertEquals;
 public class Hooks{
     public static WebDriver driver;
     // BROWSERSTACK. Note that environment variables are specified in the run configuration of the IDE
+    // See for details of using environment variables with Jenkins http://stackoverflow.com/questions/21130931/environment-variables-in-jenkins
     public static final String USERNAME = System.getenv("BROWSERSTACK_USERNAME");
     public static final String AUTOMATE_KEY= System.getenv("BROWSERSTACK_KEY");
     public static final String URL = "http://" + USERNAME + ":" + AUTOMATE_KEY + "@hub.browserstack.com/wd/hub";
 
+    // For JUnit execution, Pass on the command line as -D[variable name]=["value"] to use instead of defaults set here
     String host = System.getProperty("host", "localhost");
     String platform = System.getProperty("platform", "Windows");
     String os_version = System.getProperty("os_version", "8.1");
